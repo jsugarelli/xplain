@@ -1,0 +1,46 @@
+template:
+  params:
+    ganalytics: UA-99973049-1
+
+navbar:
+  title: "xplain"
+  type: inverse
+  right:
+    - text: Twitter
+      icon: fa-twitter fa-lg
+      href: https://twitter.com/jsugarelli
+    - text: R Blog
+      icon: fa-rss fa-lg
+      href: https://topics-in-r.blogspot.de/
+    - text: Newsletter
+      icon: fa-code fa-lg
+      href: http://wp13011521.server-he.de/rpackages/subscribe.php
+    - text: E-mail
+      icon: fa-envelope fa-lg
+      href: mailto:joachim@zuckarelli.de
+
+
+  left:
+    - text: "Getting Started"
+      href: articles/tutorial/tutorial.html
+    - text: "Package Reference"
+      href: reference/index.html
+    - text: "Materials & Tools"
+      menu:
+      - text: Learning materials
+      - text: "xplain Cheat Sheet (PDF)"
+        href: http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf
+        icon: fa-file-pdf fa-lg
+      - text: Examples
+      - text: Example xplain XML file 1
+        href: http://www.zuckarelli.de/xplain/example_lm.xml
+      - text: Example xplain XML file 2
+        href: http://www.zuckarelli.de/xplain/example_lm_foreach.xml
+      - text: Tools
+      - text: "xplain syntax highlighting scheme for Notepad++"
+        href: http://www.zuckarelli.de/xplain/xplain.xml
+
+home:
+  - links:
+      - text: "xplain Cheat Sheet (PDF)"
+        href: http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf
