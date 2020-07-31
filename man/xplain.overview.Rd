@@ -41,7 +41,7 @@ The column structure is as follows:
 \item \bold{\code{Uses return obj.}}: Indicates if the \code{<text>} element refers to the explained function's return object.
 \item \bold{\code{Text}}: The text of the respective \code{<text>} or \code{<title>} element (including R code). This column is only included if \code{show.text=TRUE}.
 }
-To learn more about the structure of xplain XML files, go to the \code{\link{xplain}} help page or consult the \href{http://www.zuckarelli.de/xplain/index.html}{web tutorial}.
+To learn more about the structure of xplain XML files, go to the \code{\link{xplain}} help page or consult the \href{https://www.zuckarelli.de/xplain/index.html}{web tutorial}.
 }
 
 
@@ -54,11 +54,12 @@ Joachim Zuckarelli, \email{joachim@zuckarelli.de}
 }
 
 \section{More material on the internet}{
-Web tutorial on how to work with xplain: \url{http://www.zuckarelli.de/xplain/index.html}\cr
-xplain cheat sheet: \url{http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
+Web tutorial on how to work with xplain: \url{https://www.zuckarelli.de/xplain/index.html}\cr
+xplain cheat sheet: \url{https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
 }
 
 
 \examples{
-xplain.overview("http://www.zuckarelli.de/xplain/example_lm.xml")
+xml.path <- system.file("", "example_lm.xml", package = "xplain")
+xplain.overview(xml.path)
 }

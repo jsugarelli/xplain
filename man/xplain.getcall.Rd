@@ -40,20 +40,22 @@ Joachim Zuckarelli, \email{joachim@zuckarelli.de}
 }
 
 \section{More material on the internet}{
-Web tutorial on how to work with xplain: \url{http://www.zuckarelli.de/xplain/index.html}\cr
-xplain cheat sheet: \url{http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
+Web tutorial on how to work with xplain: \url{https://www.zuckarelli.de/xplain/index.html}\cr
+xplain cheat sheet: \url{https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
 }
 
 
 \examples{
 library(car)
 
+xml.path <- system.file("", "example_lm.xml", package = "xplain")
+
 # Example of a wrapper function for lm()
 lm.xplain <- function(formula, data, subset, weights, na.action,
                       method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
                       singular.ok = TRUE, contrasts = NULL, offset, ...) {
   call<-xplain.getcall("lm")
-  xplain(call, xml="http://www.zuckarelli.de/xplain/example_lm.xml")
+  xplain(call, xml=xml.path)
 }
 
 lm.xplain(education ~ young + income + urban, data=Anscombe)

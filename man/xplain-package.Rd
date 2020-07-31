@@ -15,8 +15,8 @@ Author and maintainer: Joachim Zuckarelli, \email{joachim@zuckarelli.de}.
 }
 
 \section{Ressources on the internet}{
-Web tutorial on how to work with xplain: \url{http://www.zuckarelli.de/xplain/index.html}\cr
-xplain cheat sheet: \url{http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}\cr
+Web tutorial on how to work with xplain: \url{https://www.zuckarelli.de/xplain/index.html}\cr
+xplain cheat sheet: \url{https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}\cr
 xplain on GitHub: \url{https://www.github.com/jsugarelli/xplain}
 }
 

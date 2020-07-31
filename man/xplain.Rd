@@ -130,7 +130,7 @@ Joachim Zuckarelli, \email{joachim@zuckarelli.de}
 
 \section{More material on the internet}{
 Web tutorial on how to work with xplain: \url{http://www.zuckarelli.de/xplain/index.html}\cr
-xplain cheat sheet: \url{http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
+xplain cheat sheet: \url{https://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
 }
 
 
@@ -138,6 +138,8 @@ xplain cheat sheet: \url{http://www.zuckarelli.de/xplain/xplain_cheatsheet.pdf}
 
 library(car)
 
+xml.path <- system.file("", "example_lm.xml", package = "xplain")
+
 xplain(call="lm(education ~ young + income + urban, data=Anscombe)",
-  xml="http://www.zuckarelli.de/xplain/example_lm.xml")
+  xml=xml.path)
 }

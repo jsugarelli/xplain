@@ -1,9 +1,21 @@
 ###   PACKAGE XPLAIN
 ###
 ###   Author and maintainer: Joachim Zuckarelli (joachim@zuckarelli.de)
-###   Version 0.1.0
+###   Version 0.2.2
 ###
-###   Web tutorial: http://www.zuckarelli.de/xplain/index.html
+###   Web tutorial: https://www.zuckarelli.de/xplain/index.html
+
+
+
+url.isvalid <- function(url){
+  res <- suppressWarnings(try({ con <- url(url); open.connection(con, open="r",timeout = 3) }, silent = TRUE)[1])
+  suppressWarnings(try(close.connection(con), silent = TRUE))
+  if (is.null(res)) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
 
 
 
@@ -24,9 +36,13 @@ getXMLFile <- function(xml, fun, package.name, package.calling) {
   #
   # Returns: The path to the XML file or "" if no XML file was provided and none could be found or "-" if an XML file was provided but
   # couldn't be found.
-
-  if(xml == "" || (!file.exists(xml) && !RCurl::url.exists(xml))) {
-    if(xml != "" && (!file.exists(xml) && !RCurl::url.exists(xml))) xml <- "-"
+  xml.exists <- FALSE
+  if(file.exists(xml)) xml.exists <- TRUE
+  if(!xml.exists) {
+    if(url.isvalid(xml)) xml.exists <- TRUE
+  }
+  if(xml == "" || xml.exists == FALSE) {
+    if(xml != "" && xml.exists == FALSE) xml <- "-"
     else xml <- ""
     if(package.calling != "") {
       if(file.exists(file.path(utils::installed.packages()[package.calling,"LibPath"],package.calling, paste(package.calling, ".xml", sep="")))) {
@@ -69,7 +85,7 @@ getLanguage <- function() {
   if(lang == "") {
     lang <- "EN"
     # Access an object that does not exist (hopefully!) and capture the error message
-    res <- tryCatch( { xhajakjkula/1 }, error = function(err) { return(err) })
+    res <- tryCatch( { eval(parse(text = "xhajakjkula/1")) }, error = function(err) { return(err) })
     # Determine the language based on the error message
     if(res$message == "Objekt 'xhajakjkula' nicht gefunden") lang <- "DE"
     if(res$message == "objet 'xhajakjkula' introuvable") lang <- "FR"
@@ -371,8 +387,23 @@ xplain.overview <- function(xml, show.text=FALSE, preserve.seq=FALSE) {
   }
   else {
     # Read XML file
-    if(!file.exists(xml) && !RCurl::url.exists(xml)) stop(paste0("xplain XML file '", basename(xml),"' does not exist."))
-    doc <- XML::xmlInternalTreeParse(xml)
+    xml.exists <- FALSE
+    if(file.exists(xml)) xml.exists <- TRUE
+    if(!xml.exists) {
+      if(url.isvalid(xml)) xml.exists <- TRUE
+    }
+
+    if(!xml.exists) stop(paste0("xplain XML file '", basename(xml),"' does not exist."))
+
+    if(file.exists(xml)) {
+      text <- readr::read_file(xml)
+    }
+    else {
+      text <- httr::content(httr::GET(xml), as = "text")
+    }
+    text <- cleanText(text)
+    doc <- XML::xmlInternalTreeParse(text, asText=TRUE)
+
 
     # Check if XML file is a valid xplain file
     if(length(XML::getNodeSet(doc, "//xplain"))==0 && length(XML::getNodeSet(doc, "//XPLAIN"))==0) {
@@ -550,7 +581,12 @@ xplain <- function(call, xml="", lang = "", level = -1, filename="", sep="\n", t
 
     # Read XML file
 
-    text <- readr::read_file(xml)
+    if(file.exists(xml)) {
+      text <- readr::read_file(xml)
+    }
+    else {
+      text <- httr::content(httr::GET(xml), as = "text")
+    }
     text <- cleanText(text)
     doc <- XML::xmlInternalTreeParse(text, asText=TRUE)
 
