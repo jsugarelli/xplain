@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<xplain>
+
+		<package name = "stats" lang="EN">
+			
+			<function name = "lm">							
+				<title>Interpreting the coefficients</title>
+				<result name = "coefficients">
+					<text foreach="rows"> Your coefficient '!%% names(@$coefficients)[$]%%!' is !%% if(summary(@)$coefficients[$,1]>0) { "larger" } else { "smaller" } %%! than zero. !%% if(names(@$coefficients)[$] != "(Intercept)") cat("This means that the value of your dependent variable '", names(@$model)[1], "' changes by ", format(summary(@)$coefficients[$,1], digit=2, nsmall=2), " for any increase of 1 in your independent variable '", names(@$coefficients)[$], "'.", sep=""); "\n" %%!</text>
+				</result>
+			</function>
+
+		</package>
+
+	</xplain>
+</xml>

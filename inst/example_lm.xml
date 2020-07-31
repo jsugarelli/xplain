@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml>
+	<xplain>
+
+		<package name = "stats">
+			
+			<function name = "lm" lang="DE">			
+				<title>Multiple R^2</title>
+				<text level="1">Your multiple R^2 is !%% format(summary(@)$r.squared, digits=2, nsmall=2) %%!. This means that !%% format(summary(@)$r.squared*100, digits=2, nsmall=2) %%! % of the total variation of your dependent variable '!%% names(@$model)[1] %%!' can be explained by the independent variables '!%% cat(attr(@$terms, "term.labels"), sep="\', \'") %%!'.</text>
+				<text level="1">!%% if(summary(@)$r.squared>=0.7) "Your R^2 is quite good." %%!</text>
+			</function>
+
+			<!-- SAME AS ABOVE BUT WITH IMPLEMENTED WITH 'DEFINE'
+			
+			<function name = "lm" lang="EN">			
+				<define name="r2_2digs">!%% format(summary(@)$r.squared, digits=2, nsmall=2) %%!</define>
+				<define name="r2_%2digs">!%% format(summary(@)$r.squared*100, digits=2, nsmall=2) %%! %</define>
+				<define name="indep_vars">'!%% paste(attr(@$terms, "term.labels"), collapse="\', \'") %%!'</define>
+				<define name="dep_var">'!%% names(@$model)[1] %%!'</define>
+
+				
+				<title>Multiple R^2</title>
+				<text level="1" lang="EN">Your multiple R^2 is !** r2_2digs **!. This means that !** r2_%2digs **! of the total variation of your dependent variable !** dep_var **! can be explained by the independent variables !** indep_vars **!.</text>
+			
+			</function>
+			
+			-->
+
+		</package>
+
+	</xplain>
+</xml>
